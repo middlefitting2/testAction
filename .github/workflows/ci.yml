@@ -34,3 +34,5 @@ jobs:
       with:
         msg: 'Coverage: ${{ env.CODECOV_REPORT }}'
         check_for_duplicate_msg: true
+env:
+  CODECOV_REPORT: './build/reports/jacoco/test/jacocoTestReport.xml'
