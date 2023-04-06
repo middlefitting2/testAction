@@ -26,8 +26,9 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./build/reports/jacoco/test/jacocoTestReport.xml
-    - name: Comment code coverage on pull request
-      uses: unsplash/comment-on-pr@main
+    - uses: actions/checkout@v2
+    - name: Comment on PR
+      uses: unsplash/comment-on-pr@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
