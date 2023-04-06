@@ -1,4 +1,4 @@
-package domain.comment;
+package com.practice.springbasic.domain.comment;
 
 import com.practice.springbasic.domain.board.Board;
 import com.practice.springbasic.domain.board.BoardCategory;
