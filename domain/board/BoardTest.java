@@ -1,4 +1,4 @@
-package com.practice.springbasic.domain.board;
+package domain.board;
 
 import com.practice.springbasic.domain.member.Member;
 import com.practice.springbasic.domain.board.dto.BoardUpdateDto;

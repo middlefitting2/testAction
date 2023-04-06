@@ -1,4 +1,4 @@
-package com.practice.springbasic.domain.member;
+package domain.member;
 
 import com.practice.springbasic.service.member.dto.MemberDto;
 import org.junit.jupiter.api.Test;
