@@ -27,12 +27,12 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./build/reports/jacoco/test/jacocoTestReport.xml
     - uses: actions/checkout@v2
-    - name: Comment on PR
-      uses: unsplash/comment-on-pr@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-      with:
-        msg: 'Coverage: ${{ env.CODECOV_REPORT }}'
-        check_for_duplicate_msg: true
-env:
-  CODECOV_REPORT: './build/reports/jacoco/test/jacocoTestReport.xml'
+#     - name: Comment on PR
+#       uses: unsplash/comment-on-pr@master
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+#       with:
+#         msg: 'Coverage: ${{ env.CODECOV_REPORT }}'
+#         check_for_duplicate_msg: true
+# env:
+#   CODECOV_REPORT: './build/reports/jacoco/test/jacocoTestReport.xml'
