@@ -30,7 +30,7 @@ jobs:
     - name: Comment on PR
       uses: unsplash/comment-on-pr@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       with:
         msg: 'Coverage: ${{ env.CODECOV_REPORT }}'
         check_for_duplicate_msg: true
