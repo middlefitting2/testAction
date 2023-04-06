@@ -111,8 +111,31 @@ jacoco {
 
 jacocoTestReport {
 	reports {
-		xml.enabled = true // codecov depends on xml format report
-		html.enabled = true
-		html.destination file("${buildDir}/reports/jacoco/test/html")
+		xml.enabled true
+		html.enabled true
+		csv.enabled false
+//		html.destination file("${buildDir}/reports/jacoco/test/html")
 	}
+}
+
+jacocoTestCoverageVerification {
+	// 이 커버리지 기준은 이 글의 맨 아래에서 다시 설명하겠습니다.
+	violationRules {
+		rule {
+			element = 'CLASS'
+
+			limit {
+				counter = 'BRANCH'
+				value = 'COVEREDRATIO'
+				minimum = 0.40
+			}
+		}
+	}
+}
+
+test {
+//	jacoco {
+//		destinationFile = file("$buildDir/jacoco/jacoco.exec")
+//	}
+	useJUnitPlatform()
 }
