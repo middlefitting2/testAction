@@ -12,12 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Git
-        uses: actions/setup-git@v2
-        with:
-          user.name: "middlefitting"
-          user.email: "wjdtmdcjf2@gmail.com"
-
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
