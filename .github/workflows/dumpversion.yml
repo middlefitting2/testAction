@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Git
-        uses: actions/setup-config@v1
+        uses: actions/setup-git@v2
         with:
           user.name: "middlefitting"
           user.email: "wjdtmdcjf2@gmail.com"
