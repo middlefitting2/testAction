@@ -15,8 +15,8 @@ jobs:
       - name: Set up Git
         uses: actions/setup-config@v1
         with:
-          user.name: "Your Name"
-          user.email: "you@example.com"
+          user.name: "middlefitting"
+          user.email: "wjdtmdcjf2@gmail.com"
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
