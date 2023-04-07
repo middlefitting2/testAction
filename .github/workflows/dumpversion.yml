@@ -1,4 +1,4 @@
-name: JHipster Release
+name: Semantic Release
 
 on:
   push:
@@ -9,36 +9,15 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
 
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Clone jhipster repository
-        uses: actions/checkout@v2
-        with:
-          repository: jhipster/generator-jhipster
-          ref: main
-          path: jhipster
-
-      - name: Build and release JHipster
-        working-directory: ./jhipster
-        run: |
-          chmod +x gradlew
-          ./gradlew generateVersionInfo
-          npx standard-version -a --release-as ${GITHUB_REF#refs/tags/v}
-          ./gradlew clean build bootJar --no-daemon
-          ./gradlew createJHipsterRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
