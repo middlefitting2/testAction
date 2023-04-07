@@ -1,4 +1,4 @@
-name: Semantic Versioning
+name: JHipster Release
 
 on:
   push:
@@ -12,38 +12,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: 14.x
 
       - name: Install dependencies
         run: npm install
-      - name: Configure Git
+
+      - name: Clone jhipster repository
+        uses: actions/checkout@v2
+        with:
+          repository: jhipster/generator-jhipster
+          ref: main
+          path: jhipster
+
+      - name: Build and release JHipster
+        working-directory: ./jhipster
         run: |
-          git config --global user.email "wjdtmdcjf2gmail.com"
-          git config --global user.name "middlefitting"
-      - name: Run Standard-version
+          chmod +x gradlew
+          ./gradlew generateVersionInfo
+          npx standard-version -a --release-as ${GITHUB_REF#refs/tags/v}
+          ./gradlew clean build bootJar --no-daemon
+          ./gradlew createJHipsterRelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: npx standard-version
-      - uses: actions/checkout@v2
-      - name: Configure committer
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-      - name: Bump version
-        uses: qzb/standard-version@v1
-
-#       - name: Create release
-#         uses: actions/create-release@v1
-#         with:
-#           tag_name: v${{ env.RELEASE_VERSION }}
-#           release_name: Release ${{ env.RELEASE_VERSION }}
-#           body: |
-#             ${{ env.CHANGELOG }}
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
